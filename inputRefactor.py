@@ -5,16 +5,17 @@ class inputRefactor:
     @classmethod
     def nonLetterRemover(self, sentence):
         '''Removes Unecessary Commas and Determines if it is a question'''
+        exclusionCharacters = [";",":","!","!","#",",",".","@","'","£","$","%","^","&","*","(",")","\"","{","}","]","[","~","¬","`"]
         newSentenceArray = []
-        isQuestion = False  # initalising isQuestion as false
+        isQuestion = False  # initialising isQuestion as false
         sentence = sentence.lower()
         for word in sentence.split():  # getting each word individually
             newWordArray = []
             for letter in word:
                 if letter == "?":
-                    isQuestion = True  # checking wether it contains a question
-                elif letter == ";" or letter == ":" or letter == "," or letter == "." or letter == "!" or letter == "@" or letter == "#" or letter == "'" or letter == "/" or letter == "\"" or letter == "$": #Will be improved
-                    isQuestion = False
+                    isQuestion = True  # checking whether it contains a question
+                elif letter in exclusionCharacters:
+                    pass
                 else:
                     newWordArray.append(letter)
             newWordArray = ''.join(newWordArray)  # reconstructing inputs without strange characters
@@ -43,6 +44,7 @@ class inputRefactor:
                                         'formats': ('U46', 'i4')})  # initialising data store with formats of data types.
         dataStore['word'] = word
         dataStore['times'] = times # adding all unique words and their occurrence to an associative array
+        print(dataStore, isQuestion)
         return dataStore, isQuestion
 
     @classmethod
@@ -52,7 +54,7 @@ class inputRefactor:
                                        'formats': ('U16', 'i4', 'U16')})
         return False
 
-tempSentence = ("the cow watched the far land, for a small child. Cow the far land kept old men attacked! The cows were lost.")
+tempSentence = ("the cow watched the far land, for a small child. Cow the far land kept old men attacked? The cows were lost.")
 test = inputRefactor.nonLetterRemover(tempSentence)
 v = inputRefactor.tokenise(test)
 
