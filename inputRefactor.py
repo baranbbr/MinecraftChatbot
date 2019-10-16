@@ -47,13 +47,7 @@ class inputRefactor:
         print(dataStore, isQuestion)
         return dataStore, isQuestion
 
-    @classmethod
-    def wordType(self, wordList):
-        '''Ignore (WIP)'''
-        dataStore = np.zeros(2, dtype={'names': ('word', 'times', 'type'),
-                                       'formats': ('U16', 'i4', 'U16')})
-        return False
-
+#Test inputs
 tempSentence = ("the cow watched the far land, for a small child. Cow the far land kept old men attacked? The cows were lost.")
 test = inputRefactor.nonLetterRemover(tempSentence)
 v = inputRefactor.tokenise(test)
