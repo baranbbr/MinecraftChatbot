@@ -26,25 +26,32 @@ class Meaning:
             data = json.loads(url.read().decode())
             for item in data:
                 self.items_names.append(item['name'].lower())
-            print(self.items_names)
 
     def predict(self, refactored_sentence, unrefactored_sentence):
+        """returns list of sentence type, minecraft item name, and confidence of prediction (percentage)"""
         max_local = 0
         max_global = 0
         final_type = None
-        confidence = 0
+        confidence1 = 0
+        confidence2 = 0
         for key in self.classifier_words:
             for word in refactored_sentence[0]:
                 if word[0] in self.classifier_words.get(key):
                     max_local = max_local + 1 + word[1]
             if max_local > max_global:
-                confidence = max_local - max_global
+                confidence2 = confidence1
+                confidence1 = max_local - max_global
                 max_global = max_local
                 final_type = key
             max_local=0
 
         item_name = None
         for item in self.items_names:
-            if item in unrefactored_sentence and item_name is None:
+            if item in unrefactored_sentence:
                 item_name = item
-        return final_type, item_name, confidence
+                break
+
+        confidence_percentage = 100
+        if confidence2 is not 0:
+            confidence_percentage = confidence_percentage - confidence1*100/confidence2
+        return final_type, item_name, confidence_percentage
