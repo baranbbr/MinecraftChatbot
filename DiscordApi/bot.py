@@ -10,9 +10,11 @@ token = os.getenv('DISCORD_TOKEN')
 
 client = discord.Client()
 
+
 @client.event
 async def on_ready():
     print(f'{client.user.name} has connected to Discord!')
+
 
 @client.event
 async def on_member_join(member):
@@ -21,8 +23,10 @@ async def on_member_join(member):
         f'Hi {member.name}, welcome to my Discord server!'
     )
 
+
 refactorer = inputRefactor.InputRefactor()
 meaning = meaning.Meaning()
+
 
 @client.event
 async def on_message(message):
@@ -33,12 +37,13 @@ async def on_message(message):
         response_ref = refactorer.nonLetterRemover(message.content)
         response_ref = refactorer.tokenise(response_ref)
         response_list = meaning.predict(response_ref, message.content)
-        if response_list[0] == "Greeting":
+        if response_list[0] is "Greeting":
             response = "Hello " + str(message.author) + '!'
-        elif response_list[0] == None:
+        elif response_list[0] is None:
             response = "Sorry I don't understand your question :/"
         else:
-            response = "Message type: " + str(response_list[0]) + "\nDetected item: " + str(response_list[1]) + "\nConfidence: " + str(response_list[2])
+            response = "Message type: " + str(response_list[0]) + "\nDetected item: " + str(
+                response_list[1]) + "\nConfidence: " + str(response_list[2])
         await message.channel.send(response)
 
 

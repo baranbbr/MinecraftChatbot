@@ -4,47 +4,47 @@ import numpy as np
 class InputRefactor:
 
     @classmethod
-    def nonLetterRemover(self, sentence):
+    def nonLetterRemover(cls, sentence):
         '''Removes Unecessary Commas and Determines if it is a question'''
-        exclusionCharacters = [";", ":", "!", "!", "#", ",", ".", "@", "'", "£", "$", "%", "^", "&", "*", "(", ")",
-                               "\"", "{", "}", "]", "[", "~", "¬", "`"]
-        newSentenceArray = []
-        isQuestion = False  # initialising isQuestion as false
+        exclusion_characters = [";", ":", "!", "!", "#", ",", ".", "@", "'", "£", "$", "%", "^", "&", "*", "(", ")",
+                                "\"", "{", "}", "]", "[", "~", "¬", "`"]
+        new_sentence_array = []
+        is_question = False  # initialising isQuestion as false
         sentence = sentence.lower()
         for word in sentence.split():  # getting each word individually
-            newWordArray = []
+            new_word_array = []
             for letter in word:
                 if letter == "?":
-                    isQuestion = True  # checking whether it contains a question
-                elif letter in exclusionCharacters:
+                    is_question = True  # checking whether it contains a question
+                elif letter in exclusion_characters:
                     pass
                 else:
-                    newWordArray.append(letter)
-            newWordArray = ''.join(newWordArray)  # reconstructing inputs without strange characters
-            newSentenceArray.append(newWordArray)
-        return newSentenceArray, isQuestion
+                    new_word_array.append(letter)
+            new_word_array = ''.join(new_word_array)  # reconstructing inputs without strange characters
+            new_sentence_array.append(new_word_array)
+        return new_sentence_array, is_question
 
     @classmethod
-    def tokenise(self, sentence):
+    def tokenise(cls, sentence):
         '''Stores Data in 2D array to determine its ID and amount of times it occurs'''
-        isQuestion = sentence[1]
+        is_question = sentence[1]
         sentence = sentence[0]  # splitting input
         word = []
         times = []
-        uniqueCount = 0
         while len(sentence) > 0:
-            wordCount = 0
-            tempWord = sentence[0]
-            sentenceConstant = sentence
-            for j in sentenceConstant:  # getting all unique words
-                if tempWord == j:
+            word_count = 0
+            temp_word = sentence[0]
+            sentence_constant = sentence
+            for j in sentence_constant:  # getting all unique words
+                if temp_word == j:
                     sentence.remove(j)
-                    wordCount += 1
-            word.append(tempWord)
-            times.append(wordCount)
-        dataStore = np.zeros(len(word), dtype={'names': ('word', 'times'),
-                                               'formats': (
-                                               'U46', 'i4')})  # initialising data store with formats of data types.
-        dataStore['word'] = word
-        dataStore['times'] = times  # adding all unique words and their occurrence to an associative array
-        return dataStore, isQuestion
+                    word_count += 1
+            word.append(temp_word)
+            times.append(word_count)
+        data_store = np.zeros(len(word), dtype={'names': ('word', 'times'),
+                                                'formats': (
+                                                    'U46',
+                                                    'i4')})  # initialising data store with formats of data types.
+        data_store['word'] = word
+        data_store['times'] = times  # adding all unique words and their occurrence to an associative array
+        return data_store, is_question

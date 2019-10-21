@@ -9,13 +9,13 @@ class Meaning:
     def __init__(self):
         self.classifier_words = {
             "Craft_question": ['how', 'do', 'does,', 'would', 'can', 'could',
-                               'i', 'is', 'be', 'was', 'were', 'to',
+                               'i', 'is', 'be', 'was', 'were', 'to', 'been',
                                'craft', 'crafted', 'make', 'made',
                                'solution', 'recipe',
                                'know', 'about'],
             "Item_question":  ['what', 'can', 'could',
                                'i', 'is', 'be',
-                               'do', 'did', 'done', 'like',
+                               'do', 'did', 'done', 'like', 'for', 'used',
                                'with'],
             "Greeting":       ['hi', 'hello', 'good', 'morning', 'afternoon', 'yo',
                                'hey']
