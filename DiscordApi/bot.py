@@ -3,6 +3,7 @@ import os
 import inputRefactor
 import meaning
 import discord
+import webscraping
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -26,7 +27,7 @@ async def on_member_join(member):
 
 refactorer = inputRefactor.InputRefactor()
 meaning = meaning.Meaning()
-
+informer = webscraping.GetWebInfo()
 
 @client.event
 async def on_message(message):
@@ -41,9 +42,17 @@ async def on_message(message):
             response = "Hello " + str(message.author) + '!'
         elif response_list[0] is None:
             response = "Sorry I don't understand your question :/"
+        elif response_list[1] is None:
+            response = "Do you mean?"
+            if response_list[0] is "Craft_question":
+                response = "Do you mean: How do I craft " + ' or '.join(response_list[3]) + '?'
+            elif response_list[0] is "Item_question":
+                response = "Do you mean: What can I do with " + ' or '.join(response_list[3]) + '?'
+        elif response_list[0] is "Craft_question":
+            response = "Here is how to create " + str(response_list[1]) + '\nhttps://' + str(informer.get_craft_info(str(response_list[1])))
         else:
             response = "Message type: " + str(response_list[0]) + "\nDetected item: " + str(
-                response_list[1]) + "\nConfidence: " + str(response_list[2])
+                response_list[1]) + "\nPossible Items: " + ','.join(response_list[3]) + ":\nConfidence: " + str(response_list[2])
         await message.channel.send(response)
 
 
