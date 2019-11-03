@@ -1,6 +1,10 @@
 import numpy as np
 import nltk
 
+#uncomment this lines if you have an error with punkt
+#nltk.download('punkt')
+#nltk.download('averaged_perceptron_tagger')
+
 from nltk.tokenize import PunktSentenceTokenizer
 
 class inputRefactor:
@@ -82,12 +86,5 @@ class inputRefactor:
             tagged = nltk.pos_tag(words) #getting the code associated with the ID
             type_list.append(red_dict[tagged[0][1]]) #adding the referenced word in the dic above to an array
         return(type_list)
-
-tempSentence = ("the cow watched the far land, for a small child. Cow the far land kept old men attacked? The cows were lost.")
-
-test = inputRefactor.nonLetterRemover(tempSentence)
-test1 = inputRefactor.tokenise(test)
-test2 = inputRefactor.classifyWords(test1)
-print(test2)
 
 

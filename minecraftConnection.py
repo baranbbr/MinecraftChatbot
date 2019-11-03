@@ -7,7 +7,9 @@ import webscraping
 refactorer = inputRefactor.inputRefactor()
 meaning = meaning.Meaning()
 informer = webscraping.GetWebInfo()
-mc = Minecraft.create()
+#need to provide server id and port here
+mc = Minecraft.create("51.83.46.159", 4711)
+print("hello")
 
 class Connection:
 
