@@ -21,7 +21,10 @@ class Meaning:
                               'do', 'did', 'done', 'like', 'for', 'used',
                               'with'],
             "Greeting": ['hi', 'hello', 'good', 'morning', 'afternoon', 'yo',
-                         'hey']
+                         'hey'],
+            "Feeling": ['how', 'do', 'you', 'feel', 'are', 'you', 'feeling',
+                        'mood', 'what', 'is'],
+            "Thanks": ['goodbot', 'good', 'bot', 'thanks', 'thank', 'you', 'nice']
         }
 
         self.normal_words = [
