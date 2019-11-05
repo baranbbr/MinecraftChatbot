@@ -1,16 +1,12 @@
-import re
-import requests
-from bs4 import BeautifulSoup
-
-
-# found = soup.find_all("img")
-# print(found)
-
 class GetWebInfo:
+    import re
+    import requests
+    from bs4 import BeautifulSoup
+
     def __init__(self):
         url = 'https://www.minecraftcraftingguide.net'
-        response = requests.get(url)
-        self.soup = BeautifulSoup(response.text, "html.parser")
+        response = self.requests.get(url)
+        self.soup = self.BeautifulSoup(response.text, "html.parser")
 
     def get_craft_info(self, item):
         item_regex = r"\b" + item + r"\b"
@@ -21,8 +17,8 @@ class GetWebInfo:
                 # print(data)
                 img_title = data['alt']
                 img_link = data['src']
-                contains_item = re.compile(item_regex, re.IGNORECASE)
-                contains_crafting = re.compile('crafting', re.IGNORECASE)
+                contains_item = self.re.compile(item_regex, self.re.IGNORECASE)
+                contains_crafting = self.re.compile('crafting', self.re.IGNORECASE)
                 if contains_item.search(img_title) and contains_crafting.search(img_title):
                     return str(img_link)[2:]
             except IndexError:

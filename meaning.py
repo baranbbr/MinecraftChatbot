@@ -1,13 +1,9 @@
-import numpy as np
-
-import urllib.request, json
-from difflib import SequenceMatcher
-
-
 class Meaning:
     """By passing refactored input this class calculate the meaning of sentence
        Simple algorithm will predict what user want to know
     """
+
+    from difflib import SequenceMatcher
 
     def __init__(self):
         self.classifier_words = {
@@ -429,7 +425,7 @@ class Meaning:
                             "yellow wool"]
 
     def predict(self, refactored_sentence, unrefactored_sentence):
-        """returns list of sentence type, minecraft item name, and confidence of prediction (percentage)"""
+        """returns list of sentence type, Minecraft item name, and confidence of prediction (percentage)"""
         max_local = 0
         max_global = 0
         final_type = None
@@ -467,7 +463,7 @@ class Meaning:
                         possible_items.append(item)
                         continue
                     for item_part in item:
-                        similarity = SequenceMatcher(None, item_part, word).ratio()
+                        similarity = self.SequenceMatcher(None, item_part, word).ratio()
                         if similarity > 0.5:
                             possible_items.append(item)
                             break
