@@ -60,7 +60,7 @@ class Meaning:
         item_name = None
         for item in self.items_names:
             if item['itemTitle'].lower() in unrefactored_sentence:
-                item_name = item['itemTitle'].lower()
+                item_name = item
                 break
 
         possible_items = list()

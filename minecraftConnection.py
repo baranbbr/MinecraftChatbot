@@ -22,6 +22,7 @@ class Connection:
             response = "SVEN: " + messageHandler.generate_response(message, player_ID)
             mc.postToChat(response)
 
+    @classmethod
     def start(self):
         '''function to control on/off of chatbot (controlls hotbar ingame)'''
         start_up = False
