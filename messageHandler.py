@@ -3,6 +3,7 @@ class MessageHandler:
     import meaning
     import random as random
     import webscraping
+    import requests
 
     def __init__(self):
 
@@ -43,10 +44,10 @@ class MessageHandler:
             elif response_list[0] is "Item_question":
                 response = "Do you mean: What can I do with " + ' or '.join(response_list[3]) + '?'
         elif response_list[0] is "Craft_question":
-            response = "Here is how to create " + str(response_list[1]) + ' | https://' + str(
-                self.informer.get_craft_info(str(response_list[1])))
+            itemData = self.requests.get("http://51.83.46.159:8000/items/" + str(response_list[1]['id']) + "?format=json").json()
+            response = "Here is how to create " + str(itemData['itemTitle'])  + ' | ' + str(itemData['itemIngredients']) + ' | https://' + str(itemData['craftingURL'])
         else:
-            response = "Message type: " + str(response_list[0]) + " | Detected item: " + str(
-                response_list[1]) + " Possible Items: " + ','.join(response_list[3]) + ": Confidence: " + str(
-                response_list[2])
+            itemData = self.requests.get("http://51.83.46.159:8000/items/" + str(response_list[1]['id']) + "?format=json").json()
+            response = str(itemData['itemDescription'])
+
         return response
