@@ -31,14 +31,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'recipesapi.apps.RecipesapiConfig',
+    'recipesapi.apps.RecipesapiConfig', #letting our project know about our app
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
+    'rest_framework', #letting our django project know about rest api framework
 ]
 
 MIDDLEWARE = [
@@ -76,12 +76,13 @@ WSGI_APPLICATION = 'minecraftRecipesApi.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+#this is initialization of connection with database, it was set to connect with SQLlite by default, had to change it to MySQL
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'mcrecipesapi',
         'USER': 'root',
-        'PASSWORD': 'sven123',
+        'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '3306'
     }
