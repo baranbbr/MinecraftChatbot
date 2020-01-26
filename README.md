@@ -15,6 +15,8 @@ You'll notice that each question begins with a prefix, "Sven", this is required 
 Video showing chatbot working with test data: https://youtu.be/YGjHxd8RXtc.
 
 ## Made With
-github.com/Vendari
-github.com/DarkSwirl
-github.com/bochnotomas
+https://github.com/Vendari
+
+https://github.com/DarkSwirl
+
+https://github.com/bochnotomas
