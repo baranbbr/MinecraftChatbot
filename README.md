@@ -13,3 +13,8 @@
 You'll notice that each question begins with a prefix, "Sven", this is required so that Sven only responds to questions addressed to him and players can continue talking to each other in Discord and Minecraft without Sven getting in the way.
 
 Video showing chatbot working with test data: https://youtu.be/YGjHxd8RXtc.
+
+## Made With
+github.com/Vendari
+github.com/DarkSwirl
+github.com/bochnotomas
